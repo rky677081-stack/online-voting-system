@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cast Your Vote - Indian Voting System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="Election-Commission_Preview.png" alt="Election Commission" class="logo-img">
+                <h1>भारत निर्वाचन आयोग</h1>
+                <p>Election Commission of India</p>
+            </div>
+            <nav class="nav">
+                <span class="user-info" id="userInfo"></span>
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="voting-header">
+                <h2><i class="fas fa-vote-yea"></i> Cast Your Vote</h2>
+                <div class="voting-info">
+                    <p><strong>Constituency:</strong> <span id="userConstituency"></span></p>
+                    <p><strong>State:</strong> <span id="userState"></span></p>
+                </div>
+            </div>
+
+            <div id="votingSection" class="voting-section">
+                <div class="candidates-grid" id="candidatesGrid">
+                    <!-- Candidates will be loaded here -->
+                </div>
+            </div>
+
+            <div id="alreadyVoted" class="already-voted" style="display: none;">
+                <div class="voted-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank You for Voting!</h3>
+                    <p>You have already cast your vote in this election.</p>
+                    <p>Your participation in democracy is appreciated.</p>
+                </div>
+            </div>
+
+            <div id="notVerified" class="not-verified" style="display: none;">
+                <div class="verification-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Account Not Verified</h3>
+                    <p>Your voter account is not yet verified by the Election Commission.</p>
+                    <p>Please contact your local election office for verification.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Vote Confirmation Modal -->
+    <div id="confirmVoteModal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-vote-yea"></i> Confirm Your Vote</h2>
+            <div class="vote-confirmation">
+                <div class="candidate-preview" id="candidatePreview">
+                    <!-- Selected candidate details will appear here -->
+                </div>
+                <div class="confirmation-text">
+                    <p><strong>Are you sure you want to vote for this candidate?</strong></p>
+                    <p class="warning-text">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Once submitted, your vote cannot be changed.
+                    </p>
+                </div>
+                <div class="confirmation-buttons">
+                    <button class="btn btn-primary" onclick="confirmVote()">
+                        <i class="fas fa-check"></i> Confirm Vote
+                    </button>
+                    <button class="btn btn-secondary" onclick="closeModal('confirmVoteModal')">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Vote Cast Successfully!</h2>
+            <p>Thank you for participating in the democratic process.</p>
+            <p>Your vote has been recorded securely.</p>
+            <button class="btn btn-primary" onclick="redirectToHome()">
+                <i class="fas fa-home"></i> Return to Home
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Processing your vote...</p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Election Commission of India. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/voting.js"></script>
+</body>
+</html>

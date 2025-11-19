@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Online Voting System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="Election-Commission_Preview.png" alt="Election Commission" class="logo-img">
+                <h1>भारत निर्वाचन आयोग</h1>
+                <p>Election Commission of India</p>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#" class="nav-link" onclick="showLogin()">Login</a>
+                <a href="#" class="nav-link" onclick="showRegister()">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Secure Online Voting System</h2>
+                    <p>Exercise your democratic right from the comfort of your home</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showLogin()">
+                            <i class="fas fa-vote-yea"></i> Vote Now
+                        </button>
+                        <button class="btn btn-secondary" onclick="showRegister()">
+                            <i class="fas fa-user-plus"></i> Register to Vote
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-vote-yea hero-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2>About Online Voting</h2>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure & Encrypted</h3>
+                        <p>Your vote is protected with advanced encryption technology</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h3>24/7 Availability</h3>
+                        <p>Vote anytime during the election period</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile Friendly</h3>
+                        <p>Access from any device - computer, tablet, or smartphone</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2><i class="fas fa-sign-in-alt"></i> Voter Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginVoterId">Voter ID</label>
+                    <input type="text" id="loginVoterId" placeholder="Enter your Voter ID (e.g., ABC1234567)" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <p class="modal-footer">
+                Don't have an account? <a href="#" onclick="switchToRegister()">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> Voter Registration</h2>
+            <form id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerName">Full Name</label>
+                        <input type="text" id="registerName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerVoterId">Voter ID</label>
+                        <input type="text" id="registerVoterId" placeholder="ABC1234567" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPhone">Phone Number</label>
+                        <input type="tel" id="registerPhone" placeholder="9876543210" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerAadhar">Aadhar Number</label>
+                    <input type="text" id="registerAadhar" placeholder="123456789012" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerConstituency">Constituency</label>
+                        <input type="text" id="registerConstituency" placeholder="Enter your constituency" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerState">State</label>
+                        <select id="registerState" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a strong password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </form>
+            <p class="modal-footer">
+                Already have an account? <a href="#" onclick="switchToLogin()">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Election Commission of India. All rights reserved.</p>
+            <p>Secure • Transparent • Democratic</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

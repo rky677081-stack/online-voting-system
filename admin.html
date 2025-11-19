@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Indian Voting System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="Election-Commission_Preview.png" alt="Election Commission" class="logo-img">
+                <h1>Admin Dashboard</h1>
+                <p>Election Commission of India</p>
+            </div>
+            <nav class="nav">
+                <span class="user-info" id="adminInfo"></span>
+                <button class="btn btn-secondary" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="showTab('candidates')">
+                    <i class="fas fa-users"></i> Manage Candidates
+                </button>
+                <button class="tab-btn" onclick="showTab('results')">
+                    <i class="fas fa-chart-bar"></i> View Results
+                </button>
+            </div>
+
+            <!-- Candidates Management Tab -->
+            <div id="candidatesTab" class="tab-content active">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Candidate Management</h2>
+                    <button class="btn btn-primary" onclick="showAddCandidateModal()">
+                        <i class="fas fa-plus"></i> Add Candidate
+                    </button>
+                </div>
+                <div class="candidates-table">
+                    <table id="candidatesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Party</th>
+                                <th>Symbol</th>
+                                <th>Constituency</th>
+                                <th>State</th>
+                                <th>Votes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="candidatesTableBody">
+                            <!-- Candidates will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Results Tab -->
+            <div id="resultsTab" class="tab-content">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Election Results</h2>
+                    <div class="results-filters">
+                        <select id="constituencyFilter" onchange="loadResults()">
+                            <option value="">All Constituencies</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="loadResults()">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                <div id="resultsContainer">
+                    <!-- Results will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Candidate Modal -->
+    <div id="addCandidateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addCandidateModal')">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> Add New Candidate</h2>
+            <form id="addCandidateForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="candidateName">Full Name</label>
+                        <input type="text" id="candidateName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidateParty">Political Party</label>
+                        <input type="text" id="candidateParty" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="candidateSymbol">Election Symbol</label>
+                        <input type="text" id="candidateSymbol" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidateAge">Age</label>
+                        <input type="number" id="candidateAge" min="25" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="candidateConstituency">Constituency</label>
+                        <input type="text" id="candidateConstituency" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="candidateState">State</label>
+                        <select id="candidateState" required>
+                            <option value="">Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West Bengal">West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="candidateEducation">Education</label>
+                    <input type="text" id="candidateEducation" required>
+                </div>
+                <div class="form-group">
+                    <label for="candidateManifesto">Manifesto (Optional)</label>
+                    <textarea id="candidateManifesto" rows="3" maxlength="1000"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-plus"></i> Add Candidate
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Election Commission of India. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
